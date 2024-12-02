@@ -1,6 +1,8 @@
 
+// Day01.Run();
+
 class Day01 {
-  static void Main() {
+   public static void Run() {
     /**
       --Part One--
       Tasks:
