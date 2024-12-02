@@ -1,5 +1,4 @@
 
-// Day01.Run();
 
 class Day01 {
    public static void Run() {

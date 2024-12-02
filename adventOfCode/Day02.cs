@@ -1,36 +1,34 @@
 
-// Day02.Run();
-
 class Day02 {
-  public static void Run() {
-    /**
-      --Part One--
-      Tasks:
-      1. Read the input from the "input02.txt" file
-      2. Parse the input into a list of lists
-      3. Check each list to see if it is safe
-      4. Print the number of safe lists
-    */
-    var safeCount = File.ReadAllLines("./input02.txt")
-      .Select(x => x.Split(" ").Select(int.Parse).ToList())
-      .Count(IsSafe);
-    
-    Console.WriteLine(safeCount);
+    public static void Run() {
 
-    /**
-      --Part Two--
-      Tasks:
-      1. Check each list to see if it is safe with the Problem Dampener
-      2. Print the number of safe lists
-    */
+        var file = File.ReadAllLines("./input02.txt")
+            .Select(x => x.Split(" ").Select(int.Parse).ToList());
 
-    var safeCount2 = File.ReadAllLines("./input02.txt")
-      .Select(x => x.Split(" ").Select(int.Parse).ToList())
-      .Count(IsSafeWithDampener);
+        /**
+            --Part One--
+            Tasks:
+            1. Parse the input into a list of lists
+            2. Check each list to see if it is safe
+            3. Print the number of safe lists
+        */
+        var safeCount = file
+            .Count(IsSafe);
 
-    Console.WriteLine(safeCount2);
+        Console.WriteLine(safeCount);
 
-  }
+        /**
+            --Part Two--
+            Tasks:
+            1. Check each list to see if it is safe with the Problem Dampener
+            2. Print the number of safe lists
+        */
+        var safeCount2 = file
+            .Count(IsSafeWithDampener);
+
+        Console.WriteLine(safeCount2);
+
+    }
 
     static bool IsSafeWithDampener(List<int> levels) {
         for (int i = 0; i < levels.Count; i++) {
@@ -43,25 +41,35 @@ class Day02 {
         return false;
     }
 
-  static bool IsSafe(List<int> levels) {
-    return IsIncreasing(levels) || IsDecreasing(levels);
-  }
-
-  static bool IsIncreasing(List<int> levels) {
-    for (int i = 1; i < levels.Count; i++) {
-      if (levels[i] - levels[i - 1] < 1 || levels[i] - levels[i - 1] > 3) {
-        return false;
-      }
+    static bool IsSafe(List<int> levels) {
+        return IsMonotonic(levels);
     }
-    return true;
-  }
 
-  static bool IsDecreasing(List<int> levels) {
-    for (int i = 1; i < levels.Count; i++) {
-      if (levels[i - 1] - levels[i] < 1 || levels[i - 1] - levels[i] > 3) {
-        return false;
-      }
+    static bool IsMonotonic(List<int> levels) {
+        if (levels.Count < 2) return true;
+
+        bool isIncreasing = true;
+        bool isDecreasing = true;
+
+        for (int i = 1; i < levels.Count; i++) {
+            if (Comparator(levels[i], levels[i - 1])) {
+                isIncreasing = false;
+            }
+            if (Comparator(levels[i - 1], levels[i])) {
+                isDecreasing = false;
+            }
+
+            // Early exit
+            if (!isIncreasing && !isDecreasing) {
+                return false;
+            }
+        }
+
+        return isIncreasing || isDecreasing;
+}
+
+    static bool Comparator(int a, int b) {
+        var sub = a-b;
+        return sub < 1 || sub > 3;
     }
-    return true;
-  }
 }
