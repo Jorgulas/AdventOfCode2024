@@ -1,7 +1,7 @@
 
 using System.Text.RegularExpressions;
 
-Day03.Run();
+//Day03.Run();
 
 class Day03 {
   public static void Run() {
