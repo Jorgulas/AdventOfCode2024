@@ -83,51 +83,49 @@ class Day08
 
     public static void Run()
     {
-        string[] antennas = File.ReadAllLines("input08.txt");
-        int result = CalculateAntinodes(antennas);
-        Console.WriteLine($"Unique locations with antinode: {result}");
-    }
+        /*
+        Tasks:
+            - Read the input
+            - Count the number of antinodes
+                - Antinodes are created when two antennas of the same frequency are in line with each other
+                - The distance between the two antennas is twice the distance between each antinode associated
+                - Antinodes can occur at locations that contain antennas
 
-    static int CalculateAntinodes(string[] antennas)
-    {
-        int result = 0;
-        for (int i = 0; i < antennas.Length; i++)
+        */
+
+        string[] input = File.ReadAllLines("./input08.txt"); // TODO wrong
+
+        int antinodeCount = 0;
+
+        for (int i = 0; i < input.Length; i++)
         {
-            for (int j = 0; j < antennas[i].Length; j++)
+            for (int j = 0; j < input[i].Length; j++)
             {
-                if (antennas[i][j] == '.')
+                if (input[i][j] == '.')
                 {
                     continue;
                 }
 
-                char frequency = antennas[i][j];
-                for (int k = 0; k < antennas.Length; k++)
+                for (int k = 0; k < input.Length; k++)
                 {
-                    for (int l = 0; l < antennas[k].Length; l++)
+                    for (int l = 0; l < input[k].Length; l++)
                     {
-                        if (antennas[k][l] == '.')
+                        if (input[k][l] == '.')
                         {
                             continue;
                         }
 
-                        if (i == k && j == l)
-                        {
-                            continue;
-                        }
-
-                        if (antennas[k][l] == frequency)
+                        if (input[i][j] == input[k][l] && (i != k || j != l))
                         {
                             int distance = Math.Abs(i - k) + Math.Abs(j - l);
                             if (distance % 2 == 0)
                             {
-                                int antinodeX = i + (k - i) * 2;
-                                int antinodeY = j + (l - j) * 2;
-                                if (antinodeX >= 0 && antinodeX < antennas.Length && antinodeY >= 0 && antinodeY < antennas[0].Length)
+                                int antinodeX = i + (k - i) / 2;
+                                int antinodeY = j + (l - j) / 2;
+
+                                if (antinodeX >= 0 && antinodeX < input.Length && antinodeY >= 0 && antinodeY < input[antinodeX].Length)
                                 {
-                                    if (antennas[antinodeX][antinodeY] == '.')
-                                    {
-                                        result++;
-                                    }
+                                    antinodeCount++;
                                 }
                             }
                         }
@@ -136,7 +134,8 @@ class Day08
             }
         }
 
-        return result;
+        Console.WriteLine(antinodeCount);
+
     }
         
 }
