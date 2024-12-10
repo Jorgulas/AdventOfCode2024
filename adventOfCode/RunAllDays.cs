@@ -5,7 +5,7 @@
 // Each class has a static method called Run
 
 class RunAll {
-  static void Main() {
+  public static void Main() {
     var days = typeof(RunAll).Assembly.GetTypes()
       .Where(x => x.Name.StartsWith("Day"))
       .Select(x => (Type: x, Method: x.GetMethod("Run")))

@@ -79,7 +79,7 @@ Determine which updates are already in the correct order. What do you get if you
 
 */
 
-Day05.Run();
+//Day05.Run();
 
 class Day05 {
 
