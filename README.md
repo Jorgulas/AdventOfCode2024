@@ -1,6 +1,6 @@
 ## Year 2024 Advent of Code
 
-This is a repository for the Advent of Code 2024 challenges. The challenges are solved in **C#** with **VSCode**.
+This is a repository for the Advent of Code 2024 challenges. I wanted to learn **C#** so I took this challenge with that language.
 
 You can find any day's challenge in `Day**.cs` at the `adventOfCode` folder.
 
@@ -13,3 +13,5 @@ You can find any day's challenge in `Day**.cs` at the `adventOfCode` folder.
 5. [Day 6](adventOfCode/Day06.cs)
 6. [Day 7](adventOfCode/Day07.cs)
 7. [Day 8](adventOfCode/Day08.cs)
+
+Busy, no time to attend my masters and continue this.
