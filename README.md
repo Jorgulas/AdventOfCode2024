@@ -11,4 +11,5 @@ You can find any day's challenge in `Day**.cs` at the `adventOfCode` folder.
 3. [Day 4](adventOfCode/Day04.cs)
 4. [Day 5](adventOfCode/Day05.cs)
 5. [Day 6](adventOfCode/Day06.cs)
-6. [WIP*]
+6. [Day 7](adventOfCode/Day07.cs)
+7. [Day 8](adventOfCode/Day08.cs)
